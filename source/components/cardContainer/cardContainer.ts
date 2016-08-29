@@ -27,7 +27,8 @@ import { ICardContainerBuilder, CardContainerBuilder, CardContainerType } from '
 export const cardContainerInputs = {
 	builder: 'builder',
 	save: 'save',
-	searchPlaceholder: 'searchPlaceholder'
+	searchPlaceholder: 'searchPlaceholder',
+	showFilterTags: 'showFilterTags'
 };
 
 export const defaultMaxColumnSorts: number = 2;
@@ -38,7 +39,8 @@ export const defaultMaxColumnSorts: number = 2;
 	inputs: [
 		cardContainerInputs.builder,
 		cardContainerInputs.save,
-		cardContainerInputs.searchPlaceholder
+		cardContainerInputs.searchPlaceholder,
+		cardContainerInputs.showFilterTags
 	],
 	providers: [DataPager, SortManagerService],
 	directives: [
@@ -64,6 +66,7 @@ export class CardContainerComponent<T> implements OnInit {
 	permanentFooters: boolean;
 	saveWhenInvalid: boolean;
 	sortDirection: ISortDirections;
+	showFilterTags: boolean;
 
 	numberSelected: number = 0;
 	numberSelectedChanges: Subject<number> = new Subject<number>();
