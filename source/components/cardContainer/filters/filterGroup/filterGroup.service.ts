@@ -119,4 +119,8 @@ export class FilterGroup extends filters.SerializableFilter<any> implements IFil
 			option.count = _.filter(filteredDataSet, option.filter.bind(option)).length;
 		});
 	}
+
+	getDisplayValue(): string {
+		return this.type + ': ' + this.label;
+	}
 }
