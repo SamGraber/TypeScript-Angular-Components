@@ -121,6 +121,6 @@ export class FilterGroup extends filters.SerializableFilter<any> implements IFil
 	}
 
 	getDisplayValue(): string {
-		return this.type + ': ' + this.label;
+		return this.label + ': ' + this.activeOption.label;
 	}
 }
