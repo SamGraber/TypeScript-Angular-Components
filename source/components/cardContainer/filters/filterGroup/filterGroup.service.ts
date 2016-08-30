@@ -55,7 +55,8 @@ export class FilterGroup extends filters.SerializableFilter<any> implements IFil
 
 	initOptions():void {
 		this.options = this.settings.options;
-		this.activeOption = this.setDefaultOption();
+		this.activeOption = this.getDefaultOption();
+		this.defaultValue = this.activeOption;
 
 		_.each(this.options, (option: IFilterOption): void => {
 			if (_.isUndefined(option.type)) {
@@ -75,7 +76,7 @@ export class FilterGroup extends filters.SerializableFilter<any> implements IFil
 		this.onChange(false);
 	}
 
-	private setDefaultOption(): IFilterOption {
+	private getDefaultOption(): IFilterOption {
 		let defaultOption: IFilterOption = this.options[0];
 		_.each(this.options, (item: IFilterOption): void => {
 			if (item.active != null && item.active === true) {
@@ -97,7 +98,7 @@ export class FilterGroup extends filters.SerializableFilter<any> implements IFil
 		if (_.isFunction(this.activeOption.serialize)) {
 			return this.activeOption.serialize();
 		}
-		return this.activeOption.value;
+		return this.activeOption;
 	}
 
 	setActiveOption(index: number): void {
