@@ -57,16 +57,11 @@ export class RangeFilterGroup extends FilterGroup implements IRangeFilterGroup {
 	}
 
 	serialize(): IRangeFilterValue {
-		let activeOption: IRangeFilterOption = <any>this.activeOption;
+		let activeOption: IRangeFilterOption = this.activeOption;
 		if (this.isNullOption(activeOption)) {
 			return null;
 		}
-		return {
-			highInclusive: activeOption.highInclusive,
-			highExclusive: activeOption.highExclusive,
-			lowInclusive: activeOption.lowInclusive,
-			lowExclusive: activeOption.lowExclusive,
-		};
+		return activeOption;
 	}
 
 	private buildRangeOption(option: IRangeFilterOptionSettings): IRangeFilterOption {
