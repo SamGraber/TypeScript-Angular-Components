@@ -12,13 +12,31 @@ import { CardContainerComponent } from '../../cardContainer';
 })
 export class FilterTagsComponent<T> implements OnInit {
 	cardContainer: CardContainerComponent<T>;
-	displayableFilters: ISerializableFilter<T>[];
+	activeFilters: ISerializableFilter<T>[];
 
 	constructor(@Inject(forwardRef(() => CardContainerComponent)) cardContainer: CardContainerComponent<T>) {
 		this.cardContainer = cardContainer;
+		this.activeFilters = new Array<ISerializableFilter<T>>();
 	}
 
 	ngOnInit() {
-		this.displayableFilters = <ISerializableFilter<T>[]>this.cardContainer.filters.filter((f) => f instanceof SerializableFilter);
+		let displayableFilters = <ISerializableFilter<T>[]>this.cardContainer.filters.filter((f) => f instanceof SerializableFilter);
+
+		displayableFilters.forEach((filter) => {
+			let defaultValue = filter.defaultValue;
+			filter.asObservable().subscribe((newValue) => {
+				if (newValue && newValue != defaultValue) {
+					if (!this.activeFilters.find((thisFilter) => thisFilter.type == filter.type)) {
+						this.activeFilters.push(filter);
+					}
+				}
+				else {
+					let indexToRemove = this.activeFilters.indexOf(filter);
+					if (indexToRemove > -1) {
+						this.activeFilters.splice(indexToRemove, 1);
+					}
+				}
+			});
+		});
 	}
 }
