@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, forwardRef } from '@angular/core';
 
 import { filters } from 'typescript-angular-utilities';
 import ISerializableFilter = filters.ISerializableFilter;
+import SerializableFilter = filters.SerializableFilter;
 
 import { CardContainerComponent } from '../../cardContainer';
 
@@ -18,10 +19,6 @@ export class FilterTagsComponent<T> implements OnInit {
 	}
 
 	ngOnInit() {
-		//this.displayableFilters = <ISerializableFilter<T>[]>this.cardContainer.filters.filter((thisFilter) => { return ('getDisplayValue' in thisFilter); }); //TODO filter these for serializable
-		this.displayableFilters = <ISerializableFilter<T>[]>this.cardContainer.filters;
-		if (this.displayableFilters.length > 0) {
-			console.log('cc', this.displayableFilters[0]);
-		}
+		this.displayableFilters = <ISerializableFilter<T>[]>this.cardContainer.filters.filter((f) => f instanceof SerializableFilter);
 	}
 }
