@@ -97,9 +97,6 @@ export class CardsBootstrapper {
 		}, __object.objectUtility, __transform.transform);
 
 		this.dateFilter.subscribe(value => console.log(mapValues(value, date => date != null ? date.format(__date.defaultFormats.dateTimeFormat) : null)));
-		this.modeFilterGroup.subscribe(value => console.log(value));
-		this.rangeFilterGroup.subscribe(value => console.log(value));
-		this.disabledFilterGroup.subscribe(value => console.log(value));
 		this.selectFilter.subscribe(value => console.log(value));
 	}
 
@@ -178,6 +175,10 @@ export class CardsBootstrapper {
 				},
 			],
 		});
+
+		this.modeFilterGroup.subscribe(value => console.log('mode filter change', value));
+		this.rangeFilterGroup.subscribe(value => console.log('range filter change', value));
+		this.disabledFilterGroup.subscribe(value => console.log('disabled filter change', value));
 	}
 
 	submitAsync: { (data: any): Promise<void> } = (data: any) => {
