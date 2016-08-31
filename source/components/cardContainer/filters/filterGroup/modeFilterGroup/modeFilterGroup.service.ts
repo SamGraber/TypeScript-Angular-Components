@@ -50,7 +50,7 @@ export class ModeFilterGroup extends FilterGroup implements IModeFilterGroup {
 		if (activeOption.displayAll) {
 			return null;
 		}
-		return activeOption;
+		return super.serialize();
 	}
 
 	private buildModeOption(option: IModeFilterOptionSettings): IModeFilterOption {

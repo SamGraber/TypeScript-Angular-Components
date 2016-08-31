@@ -16,7 +16,16 @@ export class FilterGroupComponent<T> {
 	@Input() filterGroup: IFilterGroup;
 	@Input() dataSource: IDataSource<T>;
 	@Input() icon: string;
-	@Input() disabled: boolean;
+	private _disabled: boolean;
+
+	@Input()
+	set disabled(disabled: boolean) {
+		this._disabled = disabled;
+		this.filterGroup.disabled = disabled;
+	}
+	get disabled() {
+		return this._disabled;
+	}
 
 	expanded: boolean = true;
 	logger: __logger.ILogger;

@@ -98,7 +98,7 @@ export class FilterGroup extends filters.SerializableFilter<any> implements IFil
 		if (_.isFunction(this.activeOption.serialize)) {
 			return this.activeOption.serialize();
 		}
-		return this.activeOption;
+		return this.disabled ? null : this.activeOption;
 	}
 
 	setActiveOption(index: number): void {

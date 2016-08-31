@@ -61,7 +61,7 @@ export class RangeFilterGroup extends FilterGroup implements IRangeFilterGroup {
 		if (this.isNullOption(activeOption)) {
 			return null;
 		}
-		return activeOption;
+		return super.serialize();
 	}
 
 	private buildRangeOption(option: IRangeFilterOptionSettings): IRangeFilterOption {
