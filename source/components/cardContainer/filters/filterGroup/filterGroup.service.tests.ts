@@ -148,6 +148,6 @@ describe('FilterGroup', () => {
 		});
 		filterGroup.initOptions();
 
-		expect(filterGroup.serialize()).to.equal(4);
+		expect(filterGroup.serialize()).to.equal(activeOption);
 	});
 });

@@ -66,7 +66,7 @@ describe('modeFilterGroup', () => {
 			options: [inactiveOption, activeOption],
 		});
 
-		expect(modeFilterGroup.serialize()).to.equal(2);
+		expect(modeFilterGroup.serialize()).to.equal(activeOption);
 	});
 
 	it('should return null if the default option is selected', (): void => {
